@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "752034207667",
+    "project_id": "trim-8a3c0",
+    "storage_bucket": "trim-8a3c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752034207667:android:8c8bea0249c039776f5dc6",
+        "android_client_info": {
+          "package_name": "com.vishnu.trim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752034207667-cd96iv9gl1a86rpu5jue018k9b5fo9oe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishnu.trim",
+            "certificate_hash": "3ba295005c3efc2b434c1bc4d880b85eb0df1988"
+          }
+        },
+        {
+          "client_id": "752034207667-6fhg1lris7pdvif72gsrsg3s7e1sgmud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt1Hs4Y22-VswYoIZfRc-zDWXkkLNAo-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752034207667-6fhg1lris7pdvif72gsrsg3s7e1sgmud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
