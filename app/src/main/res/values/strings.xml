@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">TRIM</string>
+    <string name="total_monthly_spend">Total Monthly Spend</string>
+    <string name="add_subscription">Add Subscription</string>
+    <string name="edit_subscription">Edit Subscription</string>
+    <string name="save_button">Save Subscription</string>
+    <string name="subscription_name_hint">Service Name (e.g. Netflix)</string>
+    <string name="cost_hint">Monthly Cost</string>
+    <string name="billing_date_hint">Billing Date (DD)</string>
+    <string name="your_subscriptions">Your Subscriptions</string>
+    <string name="renews_on">Renews %1$s</string>
+    <string name="per_month">/mo</string>
+    <string name="delete_content_description">Delete subscription</string>
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+
+    <!-- <string name="cost_hint">Monthly Cost (e.g. 15.99)</string> -->
+</resources>
