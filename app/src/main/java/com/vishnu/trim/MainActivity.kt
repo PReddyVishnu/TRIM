@@ -17,6 +17,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -52,7 +54,7 @@ val GradientStart = Color(0xFFFF7B7B)
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
-    certificates = androidx.compose.ui.text.googlefonts.R.array.com_google_android_gms_fonts_certs
+    certificates = R.array.com_google_android_gms_fonts_certs
 )
 
 val InterFont = FontFamily(
@@ -155,6 +157,7 @@ fun TrimApp(viewModel: SubscriptionViewModel) {
 @Composable
 fun TrimDashboard(viewModel: SubscriptionViewModel, onAddClick: () -> Unit, onEditClick: (Int) -> Unit) {
     val subscriptions by viewModel.filteredSubscriptions.collectAsState(initial = emptyList())
+    val allSubscriptions by viewModel.allSubscriptions.collectAsState(initial = emptyList())
     val monthlySpend by viewModel.monthlyProjection.collectAsState(initial = 0.0)
     val yearlySpend by viewModel.yearlyProjection.collectAsState(initial = 0.0)
     val categorySpend by viewModel.categorySpending.collectAsState(initial = emptyMap())
@@ -197,39 +200,82 @@ fun TrimDashboard(viewModel: SubscriptionViewModel, onAddClick: () -> Unit, onEd
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Search Bar
-            SearchBar(query = searchQuery, onQueryChange = { viewModel.onSearchQueryChange(it) })
-
-            // Filter Chips
-            LazyRow(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-                items(categories) { filter ->
-                    FilterChip(
-                        selected = selectedFilter == filter,
-                        onClick = { viewModel.onFilterChange(filter) },
-                        label = { Text(filter) },
-                        colors = FilterChipDefaults.filterChipColors(
-                            selectedContainerColor = NeonRed,
-                            labelColor = Color.Gray,
-                            selectedLabelColor = Color.White
-                        ),
-                        modifier = Modifier.padding(end = 8.dp)
+            if (allSubscriptions.isEmpty()) {
+                Column(
+                    modifier = Modifier.fillMaxSize().padding(top = 100.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null,
+                        tint = Color.DarkGray,
+                        modifier = Modifier.size(64.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "Your vault is empty.",
+                        color = Color.Gray,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Medium,
+                        fontFamily = InterFont
+                    )
+                    Text(
+                        text = "Tap the + to start trimming costs.",
+                        color = Color.DarkGray,
+                        fontSize = 14.sp,
+                        fontFamily = InterFont
                     )
                 }
-            }
+            } else {
+                // Search Bar
+                SearchBar(query = searchQuery, onQueryChange = { viewModel.onSearchQueryChange(it) })
 
-            Spacer(modifier = Modifier.height(16.dp))
+                // Filter Chips
+                LazyRow(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                    items(categories) { filter ->
+                        FilterChip(
+                            selected = selectedFilter == filter,
+                            onClick = { viewModel.onFilterChange(filter) },
+                            label = { Text(filter) },
+                            colors = FilterChipDefaults.filterChipColors(
+                                selectedContainerColor = NeonRed,
+                                labelColor = Color.Gray,
+                                selectedLabelColor = Color.White
+                            ),
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                    }
+                }
 
-            // Subscriptions List Title
-            Text("Active Subscriptions", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold, fontFamily = InterFont)
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(subscriptions) { subscription ->
-                    SubscriptionCard(
-                        subscription = subscription,
-                        onDelete = { viewModel.deleteSubscription(subscription) },
-                        onClick = { onEditClick(subscription.id) }
+                // Subscriptions List Title
+                Text(
+                    "Active Subscriptions",
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = InterFont
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (subscriptions.isEmpty()) {
+                    Text(
+                        "No results found.",
+                        color = Color.Gray,
+                        modifier = Modifier.padding(top = 16.dp),
+                        fontFamily = InterFont
                     )
+                } else {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        items(subscriptions) { subscription ->
+                            SubscriptionCard(
+                                subscription = subscription,
+                                onDelete = { viewModel.deleteSubscription(subscription) },
+                                onClick = { onEditClick(subscription.id) }
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -555,16 +601,6 @@ fun AddSubscriptionScreen(
                 shape = MaterialTheme.shapes.medium
             ) {
                 Text(stringResource(R.string.save_button), color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            }
-
-            // Test Notification Button
-            if (!isEditing) {
-                TextButton(
-                    onClick = { viewModel.triggerTestNotification(name.ifBlank { "Test Sub" }) },
-                    modifier = Modifier.padding(top = 8.dp)
-                ) {
-                    Text("Send Test Notification (1 min delay)", color = Color.Gray, fontSize = 12.sp, fontFamily = InterFont)
-                }
             }
         }
     }

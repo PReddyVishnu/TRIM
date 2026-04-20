@@ -156,14 +156,6 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         workManager.cancelAllWorkByTag(subId.toString())
     }
 
-    fun triggerTestNotification(name: String) {
-        val workRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
-            .setInitialDelay(1, TimeUnit.MINUTES) // Fire in 60 seconds
-            .setInputData(workDataOf("sub_name" to "$name (Test)"))
-            .build()
-        workManager.enqueue(workRequest)
-    }
-
     private fun calculateDelay(billingDate: String): Long {
         return try {
             val sdf = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
