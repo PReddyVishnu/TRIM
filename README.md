@@ -1,7 +1,7 @@
 # TRIM ✂️
 **A Premium Subscription & Trial Manager for Android**
 
-TRIM is a sleek, Netflix-themed Android application designed to help users track their recurring subscriptions, calculate total monthly spend, and prevent surprise credit card charges. It operates entirely locally using Room Database and utilizes Android's WorkManager to send proactive push notifications 48 hours before a trial or subscription renews.
+TRIM is a sleek, themed Android application designed to help users track their recurring subscriptions, calculate total monthly spend, and prevent surprise credit card charges. It operates entirely locally using Room Database and utilizes Android's WorkManager to send proactive push notifications 48 hours before a trial or subscription renews.
 
 ---
 
