@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.vishnu.trim" />
+                  <option name="mobileSdkAppId" value="1:752034207667:android:8c8bea0249c039776f5dc6" />
+                  <option name="projectId" value="trim-8a3c0" />
+                  <option name="projectNumber" value="752034207667" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
