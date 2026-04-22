@@ -21,6 +21,8 @@ googleid = "1.2.0"
 googleServices = "4.4.2"
 firebaseBom = "33.7.0"
 playServicesAuth = "21.3.0"
+ycharts = "2.1.0"
+okhttp = "4.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +55,8 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+ycharts = { group = "co.yml", name = "ycharts", version.ref = "ycharts" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

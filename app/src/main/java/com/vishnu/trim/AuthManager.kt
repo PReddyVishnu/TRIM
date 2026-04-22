@@ -1,6 +1,8 @@
 package com.vishnu.trim
 
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.util.Log
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
@@ -19,19 +21,29 @@ class AuthManager(private val context: Context) {
     // Using the Web Client ID from the latest google-services.json
     private val webClientId = "752034207667-6fhg1lris7pdvif72gsrsg3s7e1sgmud.apps.googleusercontent.com"
 
+    private fun findActivity(context: Context): Activity? {
+        var currentContext = context
+        while (currentContext is ContextWrapper) {
+            if (currentContext is Activity) return currentContext
+            currentContext = currentContext.baseContext
+        }
+        return null
+    }
+
     suspend fun signInWithGoogle(): Boolean {
+        val activity = findActivity(context) ?: return false
         try {
             val googleIdOption = GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(webClientId)
-                .setAutoSelectEnabled(true)
+                .setAutoSelectEnabled(false)
                 .build()
 
             val request = GetCredentialRequest.Builder()
                 .addCredentialOption(googleIdOption)
                 .build()
 
-            val result = credentialManager.getCredential(context, request)
+            val result = credentialManager.getCredential(activity, request)
             return handleSignInResult(result)
         } catch (e: GetCredentialException) {
             Log.e("AuthManager", "Credential Error: ${e.message}")
@@ -39,6 +51,16 @@ class AuthManager(private val context: Context) {
         } catch (e: Exception) {
             Log.e("AuthManager", "Auth Error: ${e.message}")
             return false
+        }
+    }
+
+    suspend fun signInWithEmail(email: String, password: String): Boolean {
+        return try {
+            auth.signInWithEmailAndPassword(email, password).await()
+            true
+        } catch (e: Exception) {
+            Log.e("AuthManager", "Email Sign-In Error: ${e.message}")
+            false
         }
     }
 

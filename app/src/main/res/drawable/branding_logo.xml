@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="40dp"
+    android:viewportWidth="200"
+    android:viewportHeight="40">
+    <!-- Placeholder for "Powered by P Reddy Vishnu" -->
+    <!-- In a real scenario, this would be a high-quality SVG/PNG -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,20 L20,20 M25,20 L35,20" />
+</vector>

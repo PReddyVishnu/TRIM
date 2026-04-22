@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "com.vishnu.trim"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0-TRIM"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,6 +64,19 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+
+    // Charts
+    implementation(libs.ycharts)
+
+    // Networking
+    implementation(libs.okhttp)
+
+    // Biometric
+    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
+
+    // Jetpack Glance for Compose-style App Widgets
+    implementation("androidx.glance:glance-appwidget:1.1.1")
+    implementation("androidx.glance:glance-material3:1.1.1")
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

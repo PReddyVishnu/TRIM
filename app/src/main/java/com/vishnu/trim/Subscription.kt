@@ -8,7 +8,11 @@ data class Subscription(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String = "",
     val cost: Double = 0.0,
+    val previousCost: Double = 0.0,
     val billingDate: String = "",
     val isYearly: Boolean = false,
-    val category: String = "Entertainment"
+    val category: String = "Entertainment",
+    val isFreeTrial: Boolean = false,
+    val trialEndDate: Long? = null,
+    val isGhostProtected: Boolean = false
 )
