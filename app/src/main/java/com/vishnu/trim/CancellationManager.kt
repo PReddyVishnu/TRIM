@@ -32,7 +32,13 @@ object CancellationManager {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             context.startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(context, "No browser found to launch Kill Switch", Toast.LENGTH_SHORT).show()
+            // Fallback to basic search if anything fails
+            try {
+                val fallbackUrl = "https://www.google.com/search?q=cancel+${Uri.encode(serviceName)}"
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(fallbackUrl)))
+            } catch (inner: Exception) {
+                Toast.makeText(context, "Critical error launching Kill Switch", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
